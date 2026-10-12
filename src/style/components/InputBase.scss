@@ -1,11 +1,9 @@
 .Input-Base {
-  display: flex;
-  flex-direction: column;
+  border: 1px solid var(--border);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
 
-  input {
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    border-radius: 4px;
-    font-size: 1rem;
+  &:focus {
+    outline: 2px solid var(--border-focus);
   }
 }

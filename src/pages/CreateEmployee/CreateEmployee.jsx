@@ -1,79 +1,98 @@
 import { Link } from "react-router";
 import Select from "../../components/ui/Select/Select";
+import Input from "../../components/ui/Input/Input";
+import { useState } from "react";
+import { STATES } from "../../lib/constants";
+import Button from "../../components/ui/Button/Button";
 
 function CreateEmployee() {
+  const [department, setDepartment] = useState("sales");
+  const [formData, setFormData] = useState();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
   return (
     <div
-      class="d-flex flex-column align-items-center mx-auto"
+      className="d-flex flex-column align-items-center mx-auto"
       style={{
         maxWidth: "300px",
       }}
     >
-      <div class="title">
-        <h1>HRnet</h1>
-      </div>
+      <h1 className="mb-2 text-center">HRnet</h1>
       <div>
-        <Link to="/employees">View Current Employees</Link>
-        <h2>Create Employee</h2>
+        <Link to="/employees" className="text-center mx-auto d-block">
+          View Current Employees
+        </Link>
+        <h2 className="my-2">Create Employee</h2>
 
-        <form id="create-employee" className="d-flex flex-column gap-2 w-full">
+        <form
+          onSubmit={handleSubmit}
+          className="d-flex flex-column gap-2 w-full"
+        >
           <div className="d-flex flex-column">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" />
+            <Input onChange={handleChange} type="text" name="first-name" />
           </div>
 
           <div className="d-flex flex-column">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" />
+            <Input onChange={handleChange} type="text" name="last-name" />
           </div>
 
           <div className="d-flex flex-column">
             <label for="date-of-birth">Date of Birth</label>
-            <input id="date-of-birth" type="text" />
+            <Input onChange={handleChange} name="date-of-birth" type="date" />
           </div>
 
           <div className="d-flex flex-column">
             <label for="start-date">Start Date</label>
-            <input id="start-date" type="text" />
+            <Input onChange={handleChange} name="start-date" type="date" />
           </div>
 
-          <fieldset class="p-2">
+          <fieldset className="p-2 d-flex flex-column gap-2">
             <legend>Address</legend>
 
             <div className="d-flex flex-column">
               <label for="street">Street</label>
-              <input id="street" type="text" />
+              <Input onChange={handleChange} name="street" type="text" />
             </div>
 
             <div className="d-flex flex-column">
               <label for="city">City</label>
-              <input id="city" type="text" />
+              <Input onChange={handleChange} name="city" type="text" />
             </div>
 
-            <div className="d-flex flex-column">
-              <label for="state">State</label>
-              <select name="state" id="state"></select>
-            </div>
+            <Select
+              label="Department"
+              value={department}
+              onChange={(value) => {
+                setDepartment(value);
+              }}
+              options={STATES}
+            />
 
             <div className="d-flex flex-column">
               <label for="zip-code">Zip Code</label>
-              <input id="zip-code" type="number" />
+              <Input onChange={handleChange} name="zip-code" type="number" />
             </div>
           </fieldset>
 
-          <div className="d-flex flex-column">
-            <label for="department">Department</label>
-            <select name="department" id="department">
-              <option>Sales</option>
-              <option>Marketing</option>
-              <option>Engineering</option>
-              <option>Human Resources</option>
-              <option>Legal</option>
-            </select>
-          </div>
-
           <Select
             label="Department"
+            value={department}
+            onChange={(value) => {
+              setDepartment(value);
+            }}
             options={[
               {
                 label: "Sales",
@@ -97,9 +116,8 @@ function CreateEmployee() {
               },
             ]}
           />
+          <Button type="submit">Save</Button>
         </form>
-
-        <button onclick="saveEmployee()">Save</button>
       </div>
     </div>
   );

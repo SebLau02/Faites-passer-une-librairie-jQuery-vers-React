@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
 
-function Select({ label, options, ...props }) {
+function Select({ label, options, value, onChange, ...props }) {
   const { labelProps, menuProps } = props;
   const [open, setOpen] = useState(false);
+
+  const selectedOption = options.find((option) => option.value === value);
 
   const handleToggle = () => {
     setOpen(!open);
@@ -27,14 +29,14 @@ function Select({ label, options, ...props }) {
 
   return (
     <div className="relative" ref={containerRef}>
+      <label {...labelProps}>{label}</label>
       <Button
         onClick={handleToggle}
         style={{
           width: "100%",
         }}
-        {...labelProps}
       >
-        {label}
+        {selectedOption?.label || "Select an option"}
       </Button>
       {open && (
         <div
@@ -48,18 +50,23 @@ function Select({ label, options, ...props }) {
             maxWidth: "100%",
             translate: "0 100%",
             backgroundColor: "var(--light)",
+            border: "1px solid var(--border)",
             ...menuProps?.style,
           }}
         >
           {options.map((option) => (
             <Button
               key={option.value}
-              variant="outlined"
+              variant={
+                selectedOption?.value === option.value
+                  ? "contained"
+                  : "outlined"
+              }
               style={{
                 border: "none",
               }}
               onClick={() => {
-                option.onClick?.();
+                onChange?.(option.value);
                 setOpen(false);
               }}
               {...option.props}
