@@ -1,0 +1,14 @@
+@keyframes dash {
+  0% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: 250deg;
+  }
+  80% {
+    rotate: 300deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}

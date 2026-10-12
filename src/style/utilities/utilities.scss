@@ -1,0 +1,351 @@
+@use "../variables/variables.scss" as *;
+
+.text-xxl {
+  font-size: 48px;
+}
+.text-xl {
+  font-size: 24px;
+}
+.text-l {
+  font-size: 20px;
+}
+.text-md {
+  font-size: 18px;
+}
+.text-sm {
+  font-size: 15px;
+}
+.text-xs {
+  font-size: 14px;
+}
+.text-xxs {
+  font-size: 12px;
+}
+
+.bg-secondary {
+  background-color: $secondary;
+}
+.text-secondary {
+  color: $secondary;
+}
+// .text-primary-text {
+//   color: $primary-text;
+// }
+.text-dark {
+  color: $dark;
+}
+.text-dark-800 {
+  color: $dark-800;
+}
+// .text-primary {
+//   color: $primary-main;
+// }
+// .text-grey-700 {
+//   color: $grey-700;
+// }
+// .text-grey-850 {
+//   color: $grey-850;
+// }
+// .bg-primary {
+//   background-color: $primary-main;
+// }
+// .bg-light {
+//   background-color: $light;
+// }
+// .bg-dark {
+//   background-color: $grey-900;
+// }
+// .bg-grey-100 {
+//   background-color: $grey-100;
+// }
+// .bg-grey-800 {
+//   background-color: $grey-800;
+// }
+// .bg-grey-600 {
+//   background-color: $grey-600;
+// }
+
+// .stroke-primary {
+//   stroke: $primary-main;
+// }
+// .fill-primary {
+//   fill: $primary-main;
+// }
+// .fill-light {
+//   fill: $light;
+// }
+
+.bg-dark-blue {
+  background-color: $dark-blue;
+}
+.w-fit {
+  width: fit-content;
+}
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+$autos: auto;
+@each $display in $autos {
+  .m-#{$display} {
+    margin: $display;
+  }
+  .mx-#{$display} {
+    margin-left: $display;
+    margin-right: $display;
+  }
+  .mr-#{$display} {
+    margin-right: $display;
+  }
+  .ml-#{$display} {
+    margin-left: $display;
+  }
+  .mt-#{$display} {
+    margin-top: $display;
+  }
+}
+
+$textAlign: left, right, center, justify;
+@each $prop in $textAlign {
+  .text-#{$prop} {
+    text-align: $prop;
+  }
+}
+$cursor: pointer, default, none;
+@each $prop in $cursor {
+  .cursor-#{$prop} {
+    cursor: $prop;
+  }
+}
+
+$position: relative, absolute, fixed, sticky;
+@each $prop in $position {
+  .#{$prop} {
+    position: $prop;
+  }
+}
+$textTransform: capitalize, uppercase, lowercase;
+@each $prop in $textTransform {
+  .#{$prop} {
+    text-transform: $prop;
+  }
+}
+$displays: block, inline, inline-block, flex, inline-flex, grid, none;
+@each $display in $displays {
+  .d-#{$display} {
+    display: $display;
+  }
+  //   @include media-query("xl") {
+  //     .d-xl-#{$display} {
+  //       display: $display;
+  //     }
+  //   }
+}
+
+$alignItems: flex-start, flex-end, center, baseline, stretch;
+@each $align in $alignItems {
+  .align-#{$align} {
+    align-items: $align;
+  }
+}
+$alignSelf: auto, flex-start, flex-end, center, baseline, stretch;
+@each $align in $alignSelf {
+  .self-#{$align} {
+    align-self: $align;
+  }
+}
+
+$justifyContent:
+  flex-start, flex-end, center, space-between, space-around, space-evenly;
+@each $justify in $justifyContent {
+  .justify-#{$justify} {
+    justify-content: $justify;
+  }
+}
+
+$directions: row, row-reverse, column, column-reverse;
+@each $direction in $directions {
+  .flex-#{$direction} {
+    flex-direction: $direction;
+  }
+}
+
+$decorations: none, underline, overline, line-through;
+@each $decoration in $decorations {
+  .#{$decoration} {
+    text-decoration: $decoration;
+  }
+}
+$fontWeight: light, normal, medium, bold, bolder;
+@each $weight in $fontWeight {
+  .font-#{$weight} {
+    font-weight: $weight;
+  }
+}
+
+@for $i from 1 through 20 {
+  .gap-#{$i} {
+    gap: #{$i * 0.5}rem;
+  }
+
+  .p-#{$i} {
+    padding: #{$i * 0.5}rem;
+  }
+  .pl-#{$i} {
+    padding-left: #{$i * 0.5}rem;
+  }
+  .pr-#{$i} {
+    padding-right: #{$i * 0.5}rem;
+  }
+  .px-#{$i} {
+    padding-left: #{$i * 0.5}rem;
+    padding-right: #{$i * 0.5}rem;
+  }
+  .py-#{$i} {
+    padding-top: #{$i * 0.5}rem;
+    padding-bottom: #{$i * 0.5}rem;
+  }
+  .pt-#{$i} {
+    padding-top: #{$i * 0.5}rem;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i * 0.5}rem;
+  }
+
+  .m-#{$i} {
+    margin: #{$i * 0.5}rem;
+  }
+  .mx-#{$i} {
+    margin-left: #{$i * 0.5}rem;
+    margin-right: #{$i * 0.5}rem;
+  }
+  .my-#{$i} {
+    margin-top: #{$i * 0.5}rem;
+    margin-bottom: #{$i * 0.5}rem;
+  }
+  .mr-#{$i} {
+    margin-right: #{$i * 0.5}rem;
+  }
+  .ml-#{$i} {
+    margin-left: #{$i * 0.5}rem;
+  }
+  .mt-#{$i} {
+    margin-top: #{$i * 0.5}rem;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i * 0.5}rem;
+  }
+}
+
+@for $i from 1 through 20 {
+  .opacity-#{$i * 10} {
+    opacity: #{$i / 10};
+  }
+}
+
+// Variantes responsive : .d-md-none, .flex-sm-column, .text-lg-center...
+// Chaque palier s'applique en dessous de sa largeur (mobile first descendant).
+$breakpoints: (
+  "sm": 425px,
+  "md": 768px,
+  "lg": 1024px,
+);
+
+@each $bp, $size in $breakpoints {
+  @media screen and (max-width: $size) {
+    @each $display in $displays {
+      .d-#{$bp}-#{$display} {
+        display: $display;
+      }
+    }
+
+    @each $direction in $directions {
+      .flex-#{$bp}-#{$direction} {
+        flex-direction: $direction;
+      }
+    }
+
+    @each $align in $alignItems {
+      .align-#{$bp}-#{$align} {
+        align-items: $align;
+      }
+    }
+
+    @each $justify in $justifyContent {
+      .justify-#{$bp}-#{$justify} {
+        justify-content: $justify;
+      }
+    }
+
+    @each $prop in $textAlign {
+      .text-#{$bp}-#{$prop} {
+        text-align: $prop;
+      }
+    }
+
+    .w-#{$bp}-full {
+      width: 100%;
+    }
+
+    .w-#{$bp}-auto {
+      width: auto;
+    }
+
+    @for $i from 0 through 20 {
+      .gap-#{$bp}-#{$i} {
+        gap: #{$i * 0.5}rem;
+      }
+
+      .p-#{$bp}-#{$i} {
+        padding: #{$i * 0.5}rem;
+      }
+      .pl-#{$bp}-#{$i} {
+        padding-left: #{$i * 0.5}rem;
+      }
+      .pr-#{$bp}-#{$i} {
+        padding-right: #{$i * 0.5}rem;
+      }
+      .px-#{$bp}-#{$i} {
+        padding-left: #{$i * 0.5}rem;
+        padding-right: #{$i * 0.5}rem;
+      }
+      .py-#{$bp}-#{$i} {
+        padding-top: #{$i * 0.5}rem;
+        padding-bottom: #{$i * 0.5}rem;
+      }
+      .pt-#{$bp}-#{$i} {
+        padding-top: #{$i * 0.5}rem;
+      }
+      .pb-#{$bp}-#{$i} {
+        padding-bottom: #{$i * 0.5}rem;
+      }
+
+      .m-#{$bp}-#{$i} {
+        margin: #{$i * 0.5}rem;
+      }
+      .mx-#{$bp}-#{$i} {
+        margin-left: #{$i * 0.5}rem;
+        margin-right: #{$i * 0.5}rem;
+      }
+      .my-#{$bp}-#{$i} {
+        margin-top: #{$i * 0.5}rem;
+        margin-bottom: #{$i * 0.5}rem;
+      }
+      .mr-#{$bp}-#{$i} {
+        margin-right: #{$i * 0.5}rem;
+      }
+      .ml-#{$bp}-#{$i} {
+        margin-left: #{$i * 0.5}rem;
+      }
+      .mt-#{$bp}-#{$i} {
+        margin-top: #{$i * 0.5}rem;
+      }
+      .mb-#{$bp}-#{$i} {
+        margin-bottom: #{$i * 0.5}rem;
+      }
+    }
+  }
+}
