@@ -1,19 +1,35 @@
-// Palette primaire, générée autour de $primary-color (#00bc77) comme palier 500
-$primary-100: #d9fcef;
-$primary-200: #b5f8df;
-$primary-300: #80efc6;
-$primary-400: #2ce8a3;
-$primary-500: #00bc77;
-$primary-600: #00a166;
-$primary-700: #008252;
-$primary-800: #00633f;
-$primary-900: #00452c;
+// Thème WealthHealth : vert "santé" (logo) + bleu nuit "finance"
+// Palette primaire, vert-lime du logo comme palier 500
+$primary-100: #f3f8dd; // fond de ligne survolée/sélectionnée (tableau), fond de badge
+$primary-200: #e4efb5; // fond de bouton secondaire au survol, fond d'alerte succès
+$primary-300: #cbe07a; // décor : soulignés, icônes sur fond sombre (jamais du texte sur blanc)
+$primary-400: #afc93a; // décor : illustrations, graphiques, accents sur fond sombre
+$primary-500: #93ad18; // vert du logo : accents visuels, texte/icônes sur $dark-blue (jamais du texte sur blanc)
+$primary-600: #789412; // grandes surfaces vertes sans texte (bandeaux, barres)
+$primary-700: #5c7d0e; // boutons, liens, texte vert sur fond clair (4.8:1 avec blanc)
+$primary-800: #45600b; // bouton/lien au survol (:hover)
+$primary-900: #2f4208; // bouton actif (:active), texte sur fonds $primary-100/200
 
-$primary-color: $primary-500;
-$dark: #222;
-$dark-800: #2c3e50;
-$secondary: white;
-$dark-blue: #12002b;
+// Palier 700 : contraste 4.8:1 avec du texte blanc (WCAG AA)
+$primary-color: $primary-700; // couleur d'action principale : boutons, liens, éléments actifs
+$dark: #1d2b3a; // texte principal (titres, paragraphes, valeurs du tableau)
+$dark-800: #3b4a5a; // texte secondaire : labels de formulaire, en-têtes de colonnes
+$secondary: white; // fond des pages/cartes/inputs, texte sur boutons verts et fonds sombres
+$dark-blue: #0f1e2e; // header, footer, fond de modale/overlay (avec opacité)
+
+// Neutres légèrement teintés de bleu
+$light: #f6f8f3; // fond général de l'app, derrière les cartes et formulaires
+$grey-100: #eef1f4; // fond de champ désactivé, lignes alternées du tableau (zébrage)
+$grey-600: #8a97a5; // placeholder des inputs, icônes inactives (2.98:1, pas pour du texte important)
+$grey-700: #5a6b7b; // texte d'aide sous les champs, pagination, infos "Showing 1 to 10"
+$grey-800: #3b4a5a; // texte secondaire (identique à $dark-800)
+$grey-850: #2c3a49; // fond de survol dans le header/footer sombre
+$grey-900: #1d2b3a; // texte principal (identique à $dark)
+
+// Bordures
+$border-light: #dde3e9; // séparateurs, contour des cartes, lignes du tableau (décoratif)
+$border: #7d8b99; // contour des inputs, selects, date picker, checkbox (3.5:1, WCAG 1.4.11)
+$border-focus: $primary-color; // contour/outline des champs au focus ou actifs
 
 :root {
   --primary-100: #{$primary-100};
@@ -31,4 +47,16 @@ $dark-blue: #12002b;
   --dark-800: #{$dark-800};
   --secondary: #{$secondary};
   --dark-blue: #{$dark-blue};
+
+  --light: #{$light};
+  --grey-100: #{$grey-100};
+  --grey-600: #{$grey-600};
+  --grey-700: #{$grey-700};
+  --grey-800: #{$grey-800};
+  --grey-850: #{$grey-850};
+  --grey-900: #{$grey-900};
+
+  --border-light: #{$border-light};
+  --border: #{$border};
+  --border-focus: #{$border-focus};
 }
