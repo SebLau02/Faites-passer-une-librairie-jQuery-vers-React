@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
+import Chevron from "../../icons/chevron/chevron";
 
 function Select({ label, options, value, onChange, ...props }) {
   const { labelProps, menuProps } = props;
@@ -35,8 +36,10 @@ function Select({ label, options, value, onChange, ...props }) {
         style={{
           width: "100%",
         }}
+        className="d-flex justify-space-between align-center gap-1"
       >
-        {selectedOption?.label || "Select an option"}
+        <span>{selectedOption?.label || "Select an option"}</span>
+        <Chevron className={`${open ? "rotate-0" : "rotate-180"}`} />
       </Button>
       {open && (
         <div

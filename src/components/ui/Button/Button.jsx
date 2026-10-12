@@ -37,12 +37,13 @@ function Button({
   style,
   size = "md",
   variant = "contained",
+  className,
   ...props
 }) {
   return (
     <button
       type="button"
-      className="Button-Base"
+      className={`${className || ""} Button-Base`}
       style={{
         ...buttonProps.size[size].style,
         ...buttonProps.variant[variant].style,

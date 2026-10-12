@@ -186,6 +186,13 @@ $fontWeight: light, normal, medium, bold, bolder;
   }
 }
 
+$rotate: 0, 90, 180, 270;
+@each $angle in $rotate {
+  .rotate-#{$angle} {
+    rotate: $angle * 1deg;
+  }
+}
+
 @for $i from 1 through 20 {
   .gap-#{$i} {
     gap: #{$i * 0.5}rem;
