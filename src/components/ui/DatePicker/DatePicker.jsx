@@ -35,7 +35,7 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
     setOpen(!open);
   };
   const currentDay = new Date();
-  const currentMonth = currentDay.getMonth();
+  const currentMonth = currentDay.getMonth() + 1; // 1 à 12 comme le reste du composant
   const currentYear = currentDay.getFullYear();
   const allMonth = Array.from({ length: 12 }).map((lap, i) => {
     const month = getLitteralMonth(i + 1);
@@ -53,13 +53,19 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
     };
   });
 
+  // Mois/année affichés dans le calendrier (navigation)
   const [month, setMonth] = useState(currentMonth);
   const [year, setYear] = useState(currentYear);
-  const [day, setDay] = useState(currentDay.getDate());
+  // Date choisie : null tant que l'utilisateur n'a pas cliqué sur un jour
+  const [selected, setSelected] = useState(null);
 
   const days = new Date(year, month, 0).getDate();
+  const value = selected
+    ? formatDate(selected.year, selected.month, selected.day)
+    : "";
 
-  useEffect(() => {
+  const selectDay = (day) => {
+    setSelected({ year, month, day });
     onChange &&
       onChange({
         target: {
@@ -67,8 +73,7 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
           value: formatDate(year, month, day),
         },
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [year, month, day]);
+  };
 
   const containerRef = useRef(null);
 
@@ -94,7 +99,7 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
 
       <Input
         type="date"
-        value={formatDate(year, month, day)}
+        value={value}
         onClick={(e) => {
           e.preventDefault();
           togglePicker(e);
@@ -111,6 +116,8 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
             top: "100%",
             left: 0,
             right: 0,
+            zIndex: 1,
+            isolation: "isolate",
             backgroundColor: "var(--light)",
             border: "1px solid var(--border)",
           }}
@@ -120,16 +127,7 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
               <Select
                 options={allMonth}
                 value={month}
-                onChange={(e) => {
-                  setMonth(e);
-                  onChange &&
-                    onChange({
-                      target: {
-                        name: props?.name ?? "",
-                        value: formatDate(year, e, day),
-                      },
-                    });
-                }}
+                onChange={(e) => setMonth(e)}
                 style={{
                   minWidth: "122px",
                 }}
@@ -137,16 +135,7 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
               <Select
                 options={years}
                 value={year}
-                onChange={(e) => {
-                  setYear(e);
-                  onChange &&
-                    onChange({
-                      target: {
-                        name: props?.name ?? "",
-                        value: formatDate(e, month, day),
-                      },
-                    });
-                }}
+                onChange={(e) => setYear(e)}
               />
             </div>
             <div className="d-flex">
@@ -185,12 +174,18 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
           >
             {Array.from({ length: days }).map((_, i) => (
               <IconButton
-                variant={day === i + 1 ? "contained" : `outlined`}
+                variant={
+                  selected?.year === year &&
+                  selected?.month === month &&
+                  selected?.day === i + 1
+                    ? "contained"
+                    : `outlined`
+                }
                 key={i}
                 style={{
                   borderRadius: 0,
                 }}
-                onClick={() => setDay(i + 1)}
+                onClick={() => selectDay(i + 1)}
               >
                 {i + 1}
               </IconButton>

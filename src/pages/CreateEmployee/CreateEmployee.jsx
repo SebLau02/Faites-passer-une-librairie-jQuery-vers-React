@@ -50,21 +50,16 @@ function CreateEmployee() {
             <Input onChange={handleChange} type="text" name="last-name" />
           </div>
 
-          <div className="d-flex flex-column gap-1">
-            <label for="date-of-birth">Date of Birth</label>
-            <Input onChange={handleChange} name="date-of-birth" type="date" />
-          </div>
-
           <DatePicker
             label="Date of Birth"
             name="date-of-birth"
             onChange={handleChange}
           />
-
-          <div className="d-flex flex-column gap-1">
-            <label for="start-date">Start Date</label>
-            <Input onChange={handleChange} name="start-date" type="date" />
-          </div>
+          <DatePicker
+            label="Start Date"
+            name="start-date"
+            onChange={handleChange}
+          />
 
           <fieldset className="p-2 d-flex flex-column gap-2">
             <legend>Address</legend>
