@@ -4,6 +4,7 @@ import Input from "../../components/ui/Input/Input";
 import { useState } from "react";
 import { STATES } from "../../lib/constants";
 import Button from "../../components/ui/Button/Button";
+import DatePicker from "../../components/ui/DatePicker/DatePicker";
 
 function CreateEmployee() {
   const [department, setDepartment] = useState("sales");
@@ -53,6 +54,12 @@ function CreateEmployee() {
             <label for="date-of-birth">Date of Birth</label>
             <Input onChange={handleChange} name="date-of-birth" type="date" />
           </div>
+
+          <DatePicker
+            label="Date of Birth"
+            name="date-of-birth"
+            onChange={handleChange}
+          />
 
           <div className="d-flex flex-column gap-1">
             <label for="start-date">Start Date</label>

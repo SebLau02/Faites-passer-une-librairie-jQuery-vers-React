@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
 import Chevron from "../../icons/chevron/chevron";
 
-function Select({ label, options, value, onChange, ...props }) {
+function Select({ label = "", options, value, onChange, style, ...props }) {
   const { labelProps, menuProps } = props;
   const [open, setOpen] = useState(false);
 
@@ -29,13 +29,15 @@ function Select({ label, options, value, onChange, ...props }) {
   }, [open]);
 
   return (
-    <div className="relative" ref={containerRef}>
-      <label
-        {...labelProps}
-        className={`mb-1 d-block ${labelProps?.className}`}
-      >
-        {label}
-      </label>
+    <div className="relative" ref={containerRef} style={style}>
+      {label && (
+        <label
+          {...labelProps}
+          className={`mb-1 d-block ${labelProps?.className}`}
+        >
+          {label}
+        </label>
+      )}
       <Button
         onClick={handleToggle}
         style={{
@@ -59,6 +61,9 @@ function Select({ label, options, value, onChange, ...props }) {
             translate: "0 100%",
             backgroundColor: "var(--light)",
             border: "1px solid var(--border)",
+            maxHeight: "200px",
+            scrollbarWidth: "thin",
+            overflow: "auto",
             ...menuProps?.style,
           }}
         >
