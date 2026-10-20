@@ -30,7 +30,12 @@ function Select({ label, options, value, onChange, ...props }) {
 
   return (
     <div className="relative" ref={containerRef}>
-      <label {...labelProps}>{label}</label>
+      <label
+        {...labelProps}
+        className={`mb-1 d-block ${labelProps?.className}`}
+      >
+        {label}
+      </label>
       <Button
         onClick={handleToggle}
         style={{

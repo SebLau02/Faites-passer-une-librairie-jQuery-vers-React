@@ -30,7 +30,7 @@ function CreateEmployee() {
     >
       <h1 className="mb-2 text-center">HRnet</h1>
       <div>
-        <Link to="/employees" className="text-center mx-auto d-block">
+        <Link to="/employees" className="text-center mx-auto d-block underline">
           View Current Employees
         </Link>
         <h2 className="my-2">Create Employee</h2>
@@ -39,22 +39,22 @@ function CreateEmployee() {
           onSubmit={handleSubmit}
           className="d-flex flex-column gap-2 w-full"
         >
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column gap-1">
             <label for="first-name">First Name</label>
             <Input onChange={handleChange} type="text" name="first-name" />
           </div>
 
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column gap-1">
             <label for="last-name">Last Name</label>
             <Input onChange={handleChange} type="text" name="last-name" />
           </div>
 
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column gap-1">
             <label for="date-of-birth">Date of Birth</label>
             <Input onChange={handleChange} name="date-of-birth" type="date" />
           </div>
 
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column gap-1">
             <label for="start-date">Start Date</label>
             <Input onChange={handleChange} name="start-date" type="date" />
           </div>
@@ -62,18 +62,18 @@ function CreateEmployee() {
           <fieldset className="p-2 d-flex flex-column gap-2">
             <legend>Address</legend>
 
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column gap-1">
               <label for="street">Street</label>
               <Input onChange={handleChange} name="street" type="text" />
             </div>
 
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column gap-1">
               <label for="city">City</label>
               <Input onChange={handleChange} name="city" type="text" />
             </div>
 
             <Select
-              label="Department"
+              label="State"
               value={department}
               onChange={(value) => {
                 setDepartment(value);
@@ -81,7 +81,7 @@ function CreateEmployee() {
               options={STATES}
             />
 
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column gap-1">
               <label for="zip-code">Zip Code</label>
               <Input onChange={handleChange} name="zip-code" type="number" />
             </div>
@@ -116,7 +116,9 @@ function CreateEmployee() {
               },
             ]}
           />
-          <Button type="submit">Save</Button>
+          <Button type="submit" className={"w-fit mx-auto"}>
+            Save
+          </Button>
         </form>
       </div>
     </div>

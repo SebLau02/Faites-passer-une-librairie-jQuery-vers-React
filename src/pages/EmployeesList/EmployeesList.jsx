@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import Input from "../../components/ui/Input/Input";
 import Select from "../../components/ui/Select/Select";
 
@@ -42,6 +43,9 @@ function EmployeesList() {
           <Input name="search" />
         </div>
       </div>
+      <Link to="create" className="text-center mx-auto d-block underline">
+        Home
+      </Link>
     </div>
   );
 }
