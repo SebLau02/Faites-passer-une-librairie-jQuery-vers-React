@@ -6,7 +6,7 @@ import { createTheme } from "./components/ui/Modal/createTheme";
 
 const theme = {
   palette: {
-    primary: "#3b82f6",
+    primary: "#5c7d0e",
     grey: "#5a6b7b",
   },
   radius: "4px",
