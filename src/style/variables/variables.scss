@@ -26,6 +26,8 @@ $grey-800: #3b4a5a; // texte secondaire (identique à $dark-800)
 $grey-850: #2c3a49; // fond de survol dans le header/footer sombre
 $grey-900: #1d2b3a; // texte principal (identique à $dark)
 
+$backdrop: "rgba(0, 0, 0, 0.5)";
+
 // Bordures
 $border-light: #dde3e9; // séparateurs, contour des cartes, lignes du tableau (décoratif)
 $border: #7d8b99; // contour des inputs, selects, date picker, checkbox (3.5:1, WCAG 1.4.11)
@@ -59,4 +61,7 @@ $border-focus: $primary-color; // contour/outline des champs au focus ou actifs
   --border-light: #{$border-light};
   --border: #{$border};
   --border-focus: #{$border-focus};
+
+  --backdrop: #{$backdrop};
+  --radius: calc(0.5 * 1rem);
 }

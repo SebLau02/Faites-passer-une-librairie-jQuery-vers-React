@@ -5,10 +5,12 @@ import { useState } from "react";
 import { STATES } from "../../lib/constants";
 import Button from "../../components/ui/Button/Button";
 import DatePicker from "../../components/ui/DatePicker/DatePicker";
+import Modal from "../../components/ui/Modal/Modal";
 
 function CreateEmployee() {
   const [department, setDepartment] = useState("sales");
   const [formData, setFormData] = useState();
+  const [open, setOpen] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +23,7 @@ function CreateEmployee() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    setOpen(true);
   };
   return (
     <div
@@ -122,6 +125,9 @@ function CreateEmployee() {
             Save
           </Button>
         </form>
+        <Modal open={open} onClose={() => setOpen(!open)}>
+          <div>Employee Created!</div>
+        </Modal>
       </div>
     </div>
   );
