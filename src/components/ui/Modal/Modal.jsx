@@ -1,7 +1,6 @@
 const styles = {
-  dialog: {},
   backdrop: {
-    backgroundColor: "var(--backdrop)",
+    backgroundColor: "var(--oc-backdrop)",
     width: "100%",
     height: "100%",
   },
@@ -31,12 +30,16 @@ function Modal({ style, children, open, onClose, ...props }) {
           top: "50%",
           left: "50%",
           translate: "-50% -50%",
-          backgroundColor: "var(--light)",
+          backgroundColor: "var(--oc-light)",
           padding: "1rem",
-          borderRadius: "var(--radius)",
+          borderRadius: "var(--oc-radius)",
           minWidth: 400,
           ...style,
         }}
+        tabIndex={0}
+        role="dialog"
+        aria-modal="true"
+        onClick={(e) => e.stopPropagation()}
       >
         <div>{children}</div>
       </div>
