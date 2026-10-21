@@ -6,17 +6,6 @@ import { STATES } from "../../lib/constants";
 import Button from "../../components/ui/Button/Button";
 import DatePicker from "../../components/ui/DatePicker/DatePicker";
 import Modal from "../../components/ui/Modal/Modal";
-import ThemeProvider from "../../components/ui/Modal/ThemeProvider";
-import { createTheme } from "../../components/ui/Modal/createTheme";
-
-const theme = {
-  palette: {
-    primary: "#5c7d0e",
-    grey: "#5a6b7b",
-  },
-  radius: "4px",
-  components: {},
-};
 
 function CreateEmployee() {
   const [department, setDepartment] = useState("sales");
@@ -136,11 +125,9 @@ function CreateEmployee() {
             Save
           </Button>
         </form>
-        <ThemeProvider theme={createTheme(theme)}>
-          <Modal open={open} onClose={() => setOpen(!open)}>
-            <div>Employee Created!</div>
-          </Modal>
-        </ThemeProvider>
+        <Modal open={open} onClose={() => setOpen(!open)}>
+          <div>Employee Created!</div>
+        </Modal>
       </div>
     </div>
   );

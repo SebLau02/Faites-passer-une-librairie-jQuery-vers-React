@@ -1,15 +1,27 @@
 const buttonProps = {
+  base: {
+    borderRadius: "0.25rem",
+    border: "1px solid var(--oc-primary800)",
+
+    "&:hover": {
+      filter: "brightness(0.9)",
+    },
+    "&:active": {
+      filter: "brightness(1)",
+    },
+  },
+
   variant: {
     contained: {
       style: {
-        backgroundColor: "var(--primary-500)",
-        borderColor: "var(--primary-800)",
+        backgroundColor: "var(--oc-primary500)",
+        borderColor: "var(--oc-primary800)",
       },
     },
     outlined: {
       style: {
-        backgroundColor: "var(--light)",
-        borderColor: "var(--primary-800)",
+        backgroundColor: "var(--oc-light)",
+        borderColor: "var(--oc-primary800)",
       },
     },
   },
@@ -20,10 +32,11 @@ function IconButton({ children, variant = "contained", ...props }) {
     <button
       {...props}
       type="button"
-      className={`Button-Base d-flex align-center justify-center`}
+      className={`d-flex align-center justify-center`}
       style={{
         padding: "8px 8px",
         height: "fit-content",
+        ...buttonProps.base,
         ...buttonProps.variant[variant].style,
         ...props?.style,
       }}
