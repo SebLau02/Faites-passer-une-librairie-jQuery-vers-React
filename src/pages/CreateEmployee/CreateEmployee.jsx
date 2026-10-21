@@ -1,11 +1,11 @@
 import { Link } from "react-router";
-import Input from "../../components/ui/Input/Input";
 import { useState } from "react";
 import { STATES } from "../../lib/constants";
-import Button from "../../components/ui/Button/Button";
-import DatePicker from "../../components/ui/DatePicker/DatePicker";
-import Modal from "../../components/ui/Modal/Modal";
 import { Select } from "@seblau02/oc-ui";
+import { Input } from "@seblau02/oc-ui";
+import { DatePicker } from "@seblau02/oc-ui";
+import { Button } from "@seblau02/oc-ui";
+import { Modal } from "@seblau02/oc-ui";
 
 function CreateEmployee() {
   const [department, setDepartment] = useState("sales");
