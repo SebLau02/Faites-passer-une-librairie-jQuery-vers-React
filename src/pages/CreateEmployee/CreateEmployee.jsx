@@ -5,7 +5,7 @@ import { STATES } from "../../lib/constants";
 import Button from "../../components/ui/Button/Button";
 import DatePicker from "../../components/ui/DatePicker/DatePicker";
 import Modal from "../../components/ui/Modal/Modal";
-import Select from "@seblau02/oc-ui";
+import { Select } from "@seblau02/oc-ui";
 
 function CreateEmployee() {
   const [department, setDepartment] = useState("sales");
