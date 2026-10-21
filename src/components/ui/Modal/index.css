@@ -1,0 +1,22 @@
+.Button-Base {
+  border-radius: 0.25rem;
+  border: 1px solid var(--oc-primary800);
+
+  transition: filter 0.1s ease-out;
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(1);
+  }
+}
+
+.Input-Base {
+  border: 1px solid var(--border);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+
+  &:focus {
+    outline: 2px solid var(--border-focus);
+  }
+}

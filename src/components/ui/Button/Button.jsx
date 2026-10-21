@@ -1,15 +1,4 @@
 const buttonProps = {
-  base: {
-    borderRadius: "0.25rem",
-    border: "1px solid var(--oc-primary800)",
-
-    "&:hover": {
-      filter: "brightness(0.9)",
-    },
-    "&:active": {
-      filter: "brightness(1)",
-    },
-  },
   size: {
     small: {
       style: {
@@ -54,9 +43,8 @@ function Button({
   return (
     <button
       type="button"
-      className={`${className || ""}`}
+      className={`${className || ""} Button-Base`}
       style={{
-        ...buttonProps.base,
         ...buttonProps.size[size].style,
         ...buttonProps.variant[variant].style,
         ...style,
