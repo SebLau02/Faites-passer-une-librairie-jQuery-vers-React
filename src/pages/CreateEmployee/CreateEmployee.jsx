@@ -22,7 +22,7 @@ function CreateEmployee() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    localStorage.setItem("employees", JSON.stringify(formData));
     setOpen(true);
   };
   return (
