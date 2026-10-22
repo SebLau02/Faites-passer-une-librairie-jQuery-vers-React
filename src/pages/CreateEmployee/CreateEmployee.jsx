@@ -3,9 +3,10 @@ import { useState } from "react";
 import { STATES } from "../../lib/constants";
 import { Select } from "@seblau02/oc-ui";
 import { Input } from "@seblau02/oc-ui";
-import { DatePicker } from "@seblau02/oc-ui";
 import { Button } from "@seblau02/oc-ui";
 import { Modal } from "@seblau02/oc-ui";
+
+import DatePicker from "../../components/ui/DatePicker/DatePicker.jsx";
 
 function CreateEmployee() {
   const [department, setDepartment] = useState("sales");
@@ -22,7 +23,8 @@ function CreateEmployee() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("employees", JSON.stringify(formData));
+    const employees = JSON.parse(localStorage.getItem("employees") || "[]");
+    localStorage.setItem("employees", JSON.stringify([...employees, formData]));
     setOpen(true);
   };
   return (

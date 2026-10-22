@@ -24,6 +24,7 @@ function IconButton({ children, variant = "contained", ...props }) {
       style={{
         padding: "8px 8px",
         height: "fit-content",
+        aspectRatio: "1 / 1",
         ...buttonProps.variant[variant].style,
         ...props?.style,
       }}

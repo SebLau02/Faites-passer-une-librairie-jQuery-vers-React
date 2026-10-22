@@ -9,6 +9,9 @@
   &:active {
     filter: brightness(1);
   }
+  &:disabled {
+    filter: unset;
+  }
 }
 
 .Input-Base {

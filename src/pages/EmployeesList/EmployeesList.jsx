@@ -1,8 +1,12 @@
 import { Link } from "react-router";
 import Input from "../../components/ui/Input/Input";
 import Select from "../../components/ui/Select/Select";
+import { useState } from "react";
 
 function EmployeesList() {
+  const [employes, setEmployes] = useState(
+    JSON.parse(localStorage.getItem("employees") || "{}"),
+  );
   return (
     <div
       style={{

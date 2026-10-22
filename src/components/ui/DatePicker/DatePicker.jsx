@@ -35,6 +35,7 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
     setOpen(!open);
   };
   const currentDay = new Date();
+  const currentDayNumber = currentDay.getDate();
   const currentMonth = currentDay.getMonth() + 1; // 1 à 12 comme le reste du composant
   const currentYear = currentDay.getFullYear();
   const allMonth = Array.from({ length: 12 }).map((lap, i) => {
@@ -60,6 +61,37 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
   const [selected, setSelected] = useState(null);
 
   const days = new Date(year, month, 0).getDate();
+  const daysStr = [
+    {
+      value: "lundi",
+      label: "L",
+    },
+    {
+      value: "mardi",
+      label: "M",
+    },
+    {
+      value: "mercredi",
+      label: "M",
+    },
+    {
+      value: "jeudi",
+      label: "J",
+    },
+    {
+      value: "vendredi",
+      label: "V",
+    },
+    {
+      value: "samedi",
+      label: "S",
+    },
+    {
+      value: "dimanche",
+      label: "D",
+    },
+  ];
+
   const value = selected
     ? formatDate(selected.year, selected.month, selected.day)
     : "";
@@ -74,6 +106,15 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
         },
       });
   };
+
+  const monthStartDay = new Date(year, month - 1, 1).toLocaleDateString(
+    "fr-FR",
+    {
+      weekday: "long",
+    },
+  );
+
+  const calOffset = daysStr.findIndex((d) => d.value === monthStartDay);
 
   const containerRef = useRef(null);
 
@@ -127,7 +168,18 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
               <Select
                 options={allMonth}
                 value={month}
-                onChange={(e) => setMonth(e)}
+                onChange={(e) => {
+                  setMonth(e);
+                  setSelected((prev) => {
+                    return prev
+                      ? { ...prev, month: e }
+                      : {
+                          day: currentDayNumber,
+                          month: e,
+                          year,
+                        };
+                  });
+                }}
                 style={{
                   minWidth: "122px",
                 }}
@@ -135,7 +187,18 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
               <Select
                 options={years}
                 value={year}
-                onChange={(e) => setYear(e)}
+                onChange={(e) => {
+                  setYear(e);
+                  setSelected((prev) => {
+                    return prev
+                      ? { ...prev, year: e }
+                      : {
+                          day: currentDayNumber,
+                          month,
+                          year: e,
+                        };
+                  });
+                }}
               />
             </div>
             <div className="d-flex">
@@ -172,12 +235,32 @@ function DatePicker({ labelProps, label, onChange, ...props }) {
               gridTemplateColumns: "repeat(7,1fr)",
             }}
           >
+            {daysStr.map((str, i) => (
+              <IconButton
+                variant={"contained"}
+                key={i}
+                style={{
+                  borderRadius: 0,
+                }}
+                disabled
+              >
+                {str.label}
+              </IconButton>
+            ))}
+            {Array.from({ length: calOffset }).map((_, i) => (
+              <IconButton
+                variant={"outlined"}
+                key={i}
+                style={{
+                  borderRadius: 0,
+                }}
+                disabled
+              ></IconButton>
+            ))}
             {Array.from({ length: days }).map((_, i) => (
               <IconButton
                 variant={
-                  selected?.year === year &&
-                  selected?.month === month &&
-                  selected?.day === i + 1
+                  (selected?.day || currentDayNumber) === i + 1
                     ? "contained"
                     : `outlined`
                 }
