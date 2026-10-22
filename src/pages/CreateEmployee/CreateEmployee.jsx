@@ -1,15 +1,15 @@
 import { Link } from "react-router";
 import { useState } from "react";
 import { STATES } from "../../lib/constants";
-import { Select } from "@seblau02/oc-ui";
+import { DatePicker, Select } from "@seblau02/oc-ui";
 import { Input } from "@seblau02/oc-ui";
 import { Button } from "@seblau02/oc-ui";
 import { Modal } from "@seblau02/oc-ui";
 
-import DatePicker from "../../components/ui/DatePicker/DatePicker.jsx";
+// import Select from "../../components/ui/Select/Select";
+// import DatePicker from "../../components/ui/DatePicker/DatePicker.jsx";
 
 function CreateEmployee() {
-  const [department, setDepartment] = useState("sales");
   const [formData, setFormData] = useState();
   const [open, setOpen] = useState(false);
 
@@ -46,12 +46,12 @@ function CreateEmployee() {
           className="d-flex flex-column gap-2 w-full"
         >
           <div className="d-flex flex-column gap-1">
-            <label for="first-name">First Name</label>
+            <label htmlFor="first-name">First Name</label>
             <Input onChange={handleChange} type="text" name="first-name" />
           </div>
 
           <div className="d-flex flex-column gap-1">
-            <label for="last-name">Last Name</label>
+            <label htmlFor="last-name">Last Name</label>
             <Input onChange={handleChange} type="text" name="last-name" />
           </div>
 
@@ -70,36 +70,34 @@ function CreateEmployee() {
             <legend>Address</legend>
 
             <div className="d-flex flex-column gap-1">
-              <label for="street">Street</label>
+              <label htmlFor="street">Street</label>
               <Input onChange={handleChange} name="street" type="text" />
             </div>
 
             <div className="d-flex flex-column gap-1">
-              <label for="city">City</label>
+              <label htmlFor="city">City</label>
               <Input onChange={handleChange} name="city" type="text" />
             </div>
 
             <Select
               label="State"
-              value={department}
-              onChange={(value) => {
-                setDepartment(value);
-              }}
+              name="state"
+              value={formData?.state ?? ""}
+              onChange={handleChange}
               options={STATES}
             />
 
             <div className="d-flex flex-column gap-1">
-              <label for="zip-code">Zip Code</label>
+              <label htmlFor="zip-code">Zip Code</label>
               <Input onChange={handleChange} name="zip-code" type="number" />
             </div>
           </fieldset>
 
           <Select
             label="Department"
-            value={department}
-            onChange={(value) => {
-              setDepartment(value);
-            }}
+            name="department"
+            value={formData?.department ?? ""}
+            onChange={handleChange}
             options={[
               {
                 label: "Sales",

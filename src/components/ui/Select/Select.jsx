@@ -2,7 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import Button from "../Button/Button";
 import Chevron from "../../icons/chevron/chevron";
 
-function Select({ label = "", options, value, onChange, style, ...props }) {
+function Select({
+  label = "",
+  options,
+  value,
+  onChange,
+  style,
+  name,
+  ...props
+}) {
   const { labelProps, menuProps } = props;
   const [open, setOpen] = useState(false);
 
@@ -78,8 +86,11 @@ function Select({ label = "", options, value, onChange, style, ...props }) {
               style={{
                 border: "none",
               }}
-              onClick={() => {
-                onChange?.(option.value);
+              onClick={(e) => {
+                onChange?.({
+                  ...e,
+                  target: { ...e.target, name, value: option.value },
+                });
                 setOpen(false);
               }}
               {...option.props}
