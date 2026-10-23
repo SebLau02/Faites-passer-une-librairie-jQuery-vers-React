@@ -6,22 +6,31 @@ import TableContainer from "../../../../OC-UI/src/ui/TableContainer";
 import TableCell from "../../../../OC-UI/src/ui/TableCell";
 import TableRow from "../../../../OC-UI/src/ui/TableRow";
 
+const compareText = (a, b) => String(a ?? "").localeCompare(String(b ?? ""), "fr");
+const compareDate = (a, b) => new Date(a) - new Date(b);
+const compareNumeric = (a, b) =>
+  String(a ?? "").localeCompare(String(b ?? ""), "fr", { numeric: true });
+
+const sortBy = (key, compare) => (list, direction) =>
+  [...list].sort((a, b) =>
+    direction === "up" ? compare(a?.[key], b?.[key]) : compare(b?.[key], a?.[key]),
+  );
+
 const heads = [
-  { label: "First Name" },
-  { label: "Last Name" },
-  { label: "Start Date" },
-  { label: "Department" },
-  { label: "Date of Birth" },
-  { label: "Street" },
-  { label: "City" },
-  { label: "State" },
-  { label: "Zip Code" },
+  { label: "First Name", onSort: sortBy("first-name", compareText) },
+  { label: "Last Name", onSort: sortBy("last-name", compareText) },
+  { label: "Start Date", onSort: sortBy("start-date", compareDate) },
+  { label: "Department", onSort: sortBy("department", compareText) },
+  { label: "Date of Birth", onSort: sortBy("date-of-birth", compareDate) },
+  { label: "Street", onSort: sortBy("street", compareNumeric) },
+  { label: "City", onSort: sortBy("city", compareText) },
+  { label: "State", onSort: sortBy("state", compareText) },
+  { label: "Zip Code", onSort: sortBy("zip-code", compareNumeric) },
 ];
 function EmployeesList() {
   const [employes, setEmployes] = useState(
     JSON.parse(localStorage.getItem("employees") || "[]"),
   );
-  console.log(employes);
   return (
     <div
       style={{
@@ -65,12 +74,17 @@ function EmployeesList() {
       <TableContainer
         style={{
           width: "100%",
+          border: "1px solid var(--oc-grey200)",
         }}
       >
         <TableRow>
           {heads.map((head, i) => (
             <TableCell
               key={i}
+              sortable
+              onSort={(direction) => {
+                setEmployes(head.onSort(employes, direction));
+              }}
               style={{
                 backgroundColor: "var(--oc-primary200)",
                 borderColor: "var(--oc-primary300)",
