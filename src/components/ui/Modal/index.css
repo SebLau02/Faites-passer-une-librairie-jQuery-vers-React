@@ -23,9 +23,3 @@
     outline: 2px solid var(--border-focus);
   }
 }
-
-.OC-TableHead {
-  .OC-TableCell {
-    background-color: red;
-  }
-}

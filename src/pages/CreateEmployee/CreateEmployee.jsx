@@ -6,9 +6,6 @@ import { Input } from "@seblau02/oc-ui";
 import { Button } from "@seblau02/oc-ui";
 import { Modal } from "@seblau02/oc-ui";
 
-// import Select from "../../components/ui/Select/Select";
-// import DatePicker from "../../components/ui/DatePicker/DatePicker.jsx";
-
 function CreateEmployee() {
   const [formData, setFormData] = useState();
   const [open, setOpen] = useState(false);

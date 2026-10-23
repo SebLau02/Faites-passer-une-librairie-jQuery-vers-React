@@ -1,9 +1,7 @@
 import { Suspense } from "react";
 import { Routes, Route } from "react-router";
 import { CreateEmployee, EmployeesList } from "./pages";
-import ThemeProvider from "./components/ui/Modal/ThemeProvider";
-import { createTheme } from "./components/ui/Modal/createTheme";
-// import { createTheme, ThemeProvider } from "@seblau02/oc-ui";
+import { createTheme, ThemeProvider } from "@seblau02/oc-ui";
 
 const theme = {
   palette: {

@@ -1,19 +1,24 @@
 import { Link } from "react-router";
-import Input from "../../components/ui/Input/Input";
-import Select from "../../components/ui/Select/Select";
 import { useState } from "react";
-import TableContainer from "../../../../OC-UI/src/ui/TableContainer";
-import TableCell from "../../../../OC-UI/src/ui/TableCell";
-import TableRow from "../../../../OC-UI/src/ui/TableRow";
+import {
+  Input,
+  Select,
+  TableContainer,
+  TableCell,
+  TableRow,
+} from "@seblau02/oc-ui";
 
-const compareText = (a, b) => String(a ?? "").localeCompare(String(b ?? ""), "fr");
+const compareText = (a, b) =>
+  String(a ?? "").localeCompare(String(b ?? ""), "fr");
 const compareDate = (a, b) => new Date(a) - new Date(b);
 const compareNumeric = (a, b) =>
   String(a ?? "").localeCompare(String(b ?? ""), "fr", { numeric: true });
 
 const sortBy = (key, compare) => (list, direction) =>
   [...list].sort((a, b) =>
-    direction === "up" ? compare(a?.[key], b?.[key]) : compare(b?.[key], a?.[key]),
+    direction === "up"
+      ? compare(a?.[key], b?.[key])
+      : compare(b?.[key], a?.[key]),
   );
 
 const heads = [
