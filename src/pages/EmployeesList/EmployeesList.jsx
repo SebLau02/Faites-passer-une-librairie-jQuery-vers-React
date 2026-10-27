@@ -1,7 +1,12 @@
 import { Link } from "react-router";
 import { useState, useMemo } from "react";
-import { Input, TableContainer, TableCell, TableRow } from "@seblau02/oc-ui";
-import PaginationSummary from "../../../../OC-UI/src/ui/PaginationSummary";
+import {
+  Input,
+  TableContainer,
+  TableCell,
+  TableRow,
+  PaginationSummary,
+} from "@seblau02/oc-ui";
 import { useContext } from "react";
 import { EmployeesContext } from "../../hooks/context";
 
@@ -72,11 +77,6 @@ function EmployeesList() {
         </div>
       </div>
       <TableContainer
-        style={{
-          width: "100%",
-          border: "1px solid var(--oc-grey200)",
-          overflow: "auto",
-        }}
         paginationSummary={
           <PaginationSummary
             totalCount={totalCount}
