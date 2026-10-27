@@ -1,12 +1,6 @@
 import { Link } from "react-router";
 import { useState, useMemo } from "react";
-import {
-  Input,
-  Select,
-  TableContainer,
-  TableCell,
-  TableRow,
-} from "@seblau02/oc-ui";
+import { Input, TableContainer, TableCell, TableRow } from "@seblau02/oc-ui";
 import PaginationSummary from "../../../../OC-UI/src/ui/PaginationSummary";
 import { useContext } from "react";
 import { EmployeesContext } from "../../hooks/context";
@@ -72,32 +66,6 @@ function EmployeesList() {
     >
       <h1 className="text-center mt-4">Current Employees</h1>
       <div className="d-flex justify-space-between align-items-center mb-2 mt-4">
-        <div className="d-flex align-center gap-1">
-          <span>Show </span>
-
-          <Select
-            value={10}
-            options={[
-              {
-                label: "10",
-                value: 10,
-              },
-              {
-                label: "25",
-                value: 25,
-              },
-              {
-                label: "50",
-                value: 50,
-              },
-              {
-                label: "100",
-                value: 100,
-              },
-            ]}
-          />
-          <span>entries </span>
-        </div>
         <div>
           <label>Search:</label>
           <Input name="search" />
@@ -107,9 +75,24 @@ function EmployeesList() {
         style={{
           width: "100%",
           border: "1px solid var(--oc-grey200)",
+          overflow: "auto",
         }}
+        paginationSummary={
+          <PaginationSummary
+            totalCount={totalCount}
+            page={page}
+            totalPages={totalPages}
+            perPage={perPage}
+            setPerPage={(e) => setPerPage(e)}
+            setPage={(e) => setPage(e)}
+          />
+        }
       >
-        <TableRow>
+        <TableRow
+          style={{
+            width: "fit-content",
+          }}
+        >
           {heads.map((head, i) => (
             <TableCell
               key={i}
@@ -124,6 +107,7 @@ function EmployeesList() {
                 borderLeftWidth: i === 0 ? 0 : 1,
                 borderStyle: "solid",
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {head.label}
@@ -135,11 +119,14 @@ function EmployeesList() {
             key={i}
             style={{
               backgroundColor: i % 2 ? "var(--oc-grey100)" : "",
+              flex: 1,
+              width: "fit-content",
             }}
           >
             <TableCell
               style={{
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {emp["first-name"]}
@@ -147,6 +134,7 @@ function EmployeesList() {
             <TableCell
               style={{
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {emp["last-name"]}
@@ -154,6 +142,7 @@ function EmployeesList() {
             <TableCell
               style={{
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {emp["start-date"]}
@@ -161,6 +150,7 @@ function EmployeesList() {
             <TableCell
               style={{
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {emp["department"]}
@@ -168,6 +158,7 @@ function EmployeesList() {
             <TableCell
               style={{
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {emp["date-of-birth"]}
@@ -175,6 +166,7 @@ function EmployeesList() {
             <TableCell
               style={{
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {emp["street"]}
@@ -182,6 +174,7 @@ function EmployeesList() {
             <TableCell
               style={{
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {emp["city"]}
@@ -189,6 +182,7 @@ function EmployeesList() {
             <TableCell
               style={{
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {emp["state"]}
@@ -196,20 +190,13 @@ function EmployeesList() {
             <TableCell
               style={{
                 flex: 1,
+                minWidth: 200,
               }}
             >
               {emp["zip-code"]}
             </TableCell>
           </TableRow>
         ))}
-        <PaginationSummary
-          totalCount={totalCount}
-          page={page}
-          totalPages={totalPages}
-          perPage={perPage}
-          setPerPage={(e) => setPerPage(e)}
-          setPage={(e) => setPage(e)}
-        />
       </TableContainer>
       <Link to="create" className="text-center mx-auto d-block underline mt-2">
         Home

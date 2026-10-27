@@ -5,8 +5,12 @@ import { DatePicker, Select } from "@seblau02/oc-ui";
 import { Input } from "@seblau02/oc-ui";
 import { Button } from "@seblau02/oc-ui";
 import { Modal } from "@seblau02/oc-ui";
+import { useContext } from "react";
+import { EmployeesContext } from "../../hooks/context";
 
 function CreateEmployee() {
+  const { setEmployees } = useContext(EmployeesContext);
+
   const [formData, setFormData] = useState();
   const [open, setOpen] = useState(false);
 
@@ -20,8 +24,7 @@ function CreateEmployee() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const employees = JSON.parse(localStorage.getItem("employees") || "[]");
-    localStorage.setItem("employees", JSON.stringify([...employees, formData]));
+    setEmployees((prev) => [formData, ...prev]);
     setOpen(true);
   };
   return (
