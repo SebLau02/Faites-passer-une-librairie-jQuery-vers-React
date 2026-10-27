@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   Input,
   Select,
@@ -7,6 +7,9 @@ import {
   TableCell,
   TableRow,
 } from "@seblau02/oc-ui";
+import PaginationSummary from "../../../../OC-UI/src/ui/PaginationSummary";
+import { useContext } from "react";
+import { EmployeesContext } from "../../hooks/context";
 
 const compareText = (a, b) =>
   String(a ?? "").localeCompare(String(b ?? ""), "fr");
@@ -32,10 +35,34 @@ const heads = [
   { label: "State", onSort: sortBy("state", compareText) },
   { label: "Zip Code", onSort: sortBy("zip-code", compareNumeric) },
 ];
+
+const paginate = (list, perPage, page) => {
+  const start = (page - 1) * perPage;
+  const tranch = list.slice(start, start + perPage);
+  const totalPages = Math.max(1, Math.ceil(list.length / perPage));
+  const totalCount = list.length;
+
+  return { tranch, totalPages, totalCount };
+};
+
 function EmployeesList() {
-  const [employes, setEmployes] = useState(
-    JSON.parse(localStorage.getItem("employees") || "[]"),
+  const { employees } = useContext(EmployeesContext);
+
+  const [perPage, setPerPage] = useState(5);
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState(null);
+
+  const sorted = useMemo(
+    () =>
+      sort ? heads[sort.index].onSort(employees, sort.direction) : employees,
+    [employees, sort],
   );
+  const {
+    tranch: employes,
+    totalCount,
+    totalPages,
+  } = paginate(sorted, perPage, page);
+
   return (
     <div
       style={{
@@ -88,7 +115,7 @@ function EmployeesList() {
               key={i}
               sortable
               onSort={(direction) => {
-                setEmployes(head.onSort(employes, direction));
+                setSort({ index: i, direction });
               }}
               style={{
                 backgroundColor: "var(--oc-primary200)",
@@ -175,6 +202,14 @@ function EmployeesList() {
             </TableCell>
           </TableRow>
         ))}
+        <PaginationSummary
+          totalCount={totalCount}
+          page={page}
+          totalPages={totalPages}
+          perPage={perPage}
+          setPerPage={(e) => setPerPage(e)}
+          setPage={(e) => setPage(e)}
+        />
       </TableContainer>
       <Link to="create" className="text-center mx-auto d-block underline mt-2">
         Home
