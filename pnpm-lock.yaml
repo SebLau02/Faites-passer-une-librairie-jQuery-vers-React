@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@seblau02/oc-ui':
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^1.2.1
+        version: 1.2.1
       react:
         specifier: ^19.3.1
         version: 19.3.1
@@ -386,8 +386,8 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@seblau02/oc-ui@1.2.0':
-    resolution: {integrity: sha512-W5IQrestK9y18vAH3bxdaN9Ty59m41TPyEZZuptiQLEL9hu6UsQIr2lRbgU8ArluQJMFQw3a4mKbQt0PfGBpWw==, tarball: https://npm.pkg.github.com/download/@seblau02/oc-ui/1.2.0/cbf31633de9bae49abc3a335946074951303d57f}
+  '@seblau02/oc-ui@1.2.1':
+    resolution: {integrity: sha512-Xfm5Sz39ElmbmsSo0awV1BJnhufa6f0o83wpOs9yPP7+ichn0e+KZM9JHwCUP44Ad/eLUoY6o40coqiX4gymFA==, tarball: https://npm.pkg.github.com/download/@seblau02/oc-ui/1.2.1/ba4d681f85242f2499b786f47a50c22a2a01055f}
 
   '@types/esrecurse@4.3.1':
     resolution: {integrity: sha512-xJBAbDifo5hpffDBuHl0Y8ywswbiAp/Wi7Y/GtAgSlZyIABppyurxVueOPE8LUQOxdlgi6Zqce7uoEpqNTeiUw==}
@@ -1252,7 +1252,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@seblau02/oc-ui@1.2.0': {}
+  '@seblau02/oc-ui@1.2.1': {}
 
   '@types/esrecurse@4.3.1': {}
 
