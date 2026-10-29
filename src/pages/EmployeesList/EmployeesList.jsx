@@ -47,15 +47,35 @@ const paginate = (list, perPage, page) => {
 function EmployeesList() {
   const { employees } = useContext(EmployeesContext);
 
-  const [perPage, setPerPage] = useState(5);
+  const [perPage, setPerPage] = useState(10);
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
 
-  const sorted = useMemo(
-    () =>
-      sort ? heads[sort.index].onSort(employees, sort.direction) : employees,
-    [employees, sort],
-  );
+  const sorted = useMemo(() => {
+    let sorted = employees;
+    if (sort) {
+      sorted = heads[sort.index].onSort(employees, sort.direction);
+    }
+    if (searchValue)
+      sorted = sorted.filter((e) => {
+        return (
+          e["first-name"].toLowerCase().includes(searchValue.toLowerCase()) ||
+          e["last-name"].toLowerCase().includes(searchValue.toLowerCase()) ||
+          e["start-date"].toLowerCase().includes(searchValue.toLowerCase()) ||
+          e["department"].toLowerCase().includes(searchValue.toLowerCase()) ||
+          e["date-of-birth"]
+            .toLowerCase()
+            .includes(searchValue.toLowerCase()) ||
+          e["street"].toLowerCase().includes(searchValue.toLowerCase()) ||
+          e["city"].toLowerCase().includes(searchValue.toLowerCase()) ||
+          e["state"].toLowerCase().includes(searchValue.toLowerCase()) ||
+          e["zip-code"].toLowerCase().includes(searchValue.toLowerCase())
+        );
+      });
+
+    return sorted;
+  }, [employees, sort, searchValue]);
   const {
     tranch: employes,
     totalCount,
@@ -73,7 +93,11 @@ function EmployeesList() {
       <div className="d-flex justify-space-between align-items-center mb-2 mt-4">
         <div>
           <label>Search:</label>
-          <Input name="search" />
+          <Input
+            name="search"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
         </div>
       </div>
       <TableContainer
