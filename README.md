@@ -43,7 +43,3 @@ src/
   style/           # styles SCSS
 public/employees.json  # données initiales
 ```
-
-## Performance
-
-Comparaison Lighthouse jQuery / React (build de production) : voir `COMPARISON.md` et les rapports `lighthouse_*.json`. Score de performance 92 → 100, LCP −34 %, TBT 221 → 0 ms.
